@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Ethermine</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src *;">
     <link rel="stylesheet" href="../styles/main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1 id="hello">Hello World!</h1>
+    <h1 id="hello">Ethermine API call</h1>
     <p class="desc">
-        We are using node
-        <script>document.write(process.versions.node)</script>,
-        Chrome <script>document.write(process.versions.chrome)</script>,
-        and Electron <script>document.write(process.versions.electron)</script>.
+        Miner
+        <p>Data<script src="../src/miner_stats.js"></script></p>
     </p>
 </body>
 </html>

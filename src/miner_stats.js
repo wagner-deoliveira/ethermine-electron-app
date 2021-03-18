@@ -23,16 +23,6 @@ async function getMinerStats() {
         listItem.appendChild(
             document.createElement('strong')
         ).textContent = worker.Name;
-            // listItem.append(
-            //     ` can be found in ${
-            //         worker.Location
-            //     }. Cost: `
-            // );
-            // listItem.appendChild(
-            //     document.createElement('strong')
-            // ).textContent = `£${product.Price}`;
-            // myList.appendChild(listItem);
-
     })
     console.log(worker);
     return worker;

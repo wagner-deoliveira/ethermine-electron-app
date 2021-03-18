@@ -59,6 +59,7 @@ body, input, button, textarea {
 }
 
 .boxed {
+    margin-top: 0.1rem;
     color: lightseagreen;
     border: 1px solid #774DD6 ;
     border-radius: 0.3rem;

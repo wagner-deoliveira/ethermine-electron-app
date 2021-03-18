@@ -1,6 +1,6 @@
 const api = "https://api.ethermine.org/";
-let myHeaders = new Headers();
-let myInit = {
+const myHeaders = new Headers();
+const myInit = {
     method: 'GET',
     headers: myHeaders,
     mode: 'cors',
@@ -20,14 +20,17 @@ async function getMinerStats() {
             const message = `An error has occurred: ${response.status}`;
             throw new Error(message);
         }
+
         const worker = response.json().then(data => {
-            let listItem = document.createElement('li');
-            listItem.appendChild(
-                document.createElement('strong')
-            ).textContent = worker.Name;
+            let para = document.createElement("p");
+            let node = document.createTextNode(data);
+            para.appendChild(node)
+
+            let element = document.getElementsByClassName("boxed")[0];
+            element.appendChild(para);
         })
-        console.log(worker);
+        await console.log(worker);
     }
 }
 
-getMinerStats().then(r => {});
+getMinerStats();

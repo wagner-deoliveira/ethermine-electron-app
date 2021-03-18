@@ -58,14 +58,27 @@ body, input, button, textarea {
     color: rosybrown;
 }
 
-.boxed {
-    margin-top: 0.1rem;
+#login {
+    margin: 2rem;
     color: lightseagreen;
-    border: 1px solid #774DD6 ;
+    border: 1px solid lightseagreen ;
     border-radius: 0.3rem;
-    box-shadow: 1px 1px;
     grid-template-columns: 4fr 4fr 4fr;
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+.boxed {
+    margin: 1rem;
+    color: lightseagreen;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+
+.wallet {
+    margin: 1rem;
+    justify-content: center;
 }

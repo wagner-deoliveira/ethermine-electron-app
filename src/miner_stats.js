@@ -1,6 +1,7 @@
+require('dotenv').config();
+
 const api = "https://api.ethermine.org/";
-const wallet = "c0ddc2ed1355017398346ba3e5018ae3690e06c2";
-const minerStats = `miner/${wallet}/workers`;
+const minerStats = `miner/${process.env.MY_WALLET}/workers`;
 
 let myHeaders = new Headers();
 let myInit = {

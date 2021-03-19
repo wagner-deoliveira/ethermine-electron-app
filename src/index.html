@@ -13,18 +13,22 @@
     <p class="desc">Miner Stats</p>
     <form id="login">
         <div class="boxed">
-            <label for="wallet">Your wallet</label>
+            <label for="wallet">Your wallet address</label>
             <input id="wallet" name="wallet" type="text" />
-            <input id="submit" name="submit" type="submit" value="Login" />
+            <input id="submit" name="submit" type="submit" value="Get info" />
         </div>
     </form>
     <div class="server">
-        Miner
+        Miner:
         <div class="miner"></div>
     </div>
     <div class="server">
-        Hash rate
+        Average hash rate (MH/s):
         <div class="hashrate"></div>
+    </div>
+    <div class="server">
+        Reported hash rate (MH/s):
+        <div class="reportedHashrate"></div>
     </div>
 </body>
 <script data-main="../src/miner_stats.js" src="../src/require.js"></script>

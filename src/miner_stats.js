@@ -22,16 +22,26 @@ async function getMinerStats() {
 
         const result = response.json().then(res => {
             let para1 = document.createElement("p");
-            let worker = document.createTextNode(JSON.stringify(res.data[0].worker));
+            let worker = document.createTextNode(res.data[0].worker);
             para1.appendChild(worker)
             let elementWorker = document.getElementsByClassName("miner")[0];
             elementWorker.appendChild(para1);
 
             let para2 = document.createElement("p");
-            let hashRate = document.createTextNode(JSON.stringify(res.data[0].averageHashrate));
-            para2.appendChild(hashRate)
+            let hashRate = res.data[0].averageHashrate;
+            const megaHash = (hashRate / 1000000).toFixed(2);
+            const pMegaHash = document.createTextNode(megaHash);
+            para2.appendChild(pMegaHash)
             let elementHashrate = document.getElementsByClassName("hashrate")[0];
             elementHashrate.appendChild(para2);
+
+            let para3 = document.createElement("p");
+            let reportedHashRate = res.data[0].reportedHashrate;
+            const megaHashReported = (reportedHashRate / 1000000).toFixed(2);
+            const pmegaHashReported = document.createTextNode(megaHashReported);
+            para3.appendChild(pmegaHashReported)
+            let elementReportedHashrate = document.getElementsByClassName("reportedHashrate")[0];
+            elementReportedHashrate.appendChild(para3);
         })
         console.log(result);
     }

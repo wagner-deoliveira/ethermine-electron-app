@@ -7,7 +7,6 @@ const myInit = {
     cache: 'default'
 };
 
-
 async function getMinerStats() {
     let login, user = {};
     login = document.getElementById("login");
@@ -22,12 +21,17 @@ async function getMinerStats() {
         }
 
         const result = response.json().then(res => {
-            let para = document.createElement("p");
-            let node = document.createTextNode(JSON.stringify(res.data));
-            para.appendChild(node)
+            let para1 = document.createElement("p");
+            let worker = document.createTextNode(JSON.stringify(res.data[0].worker));
+            para1.appendChild(worker)
+            let elementWorker = document.getElementsByClassName("miner")[0];
+            elementWorker.appendChild(para1);
 
-            let element = document.getElementsByClassName("boxed")[0];
-            element.appendChild(para);
+            let para2 = document.createElement("p");
+            let hashRate = document.createTextNode(JSON.stringify(res.data[0].averageHashrate));
+            para2.appendChild(hashRate)
+            let elementHashrate = document.getElementsByClassName("hashrate")[0];
+            elementHashrate.appendChild(para2);
         })
         console.log(result);
     }

@@ -82,3 +82,18 @@ body, input, button, textarea {
     margin: 1rem;
     justify-content: center;
 }
+
+.server {
+    color: var(--color-primary-lighter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inserted{
+    color: var(--color-text-complement);
+    display: flex;
+    margin-left: 3rem;
+    align-items: center;
+    justify-content: center;
+}

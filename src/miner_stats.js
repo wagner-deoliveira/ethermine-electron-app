@@ -7,6 +7,16 @@ const myInit = {
     cache: 'default'
 };
 
+function convertUnixTimestamp (unix_timestamp){
+    var date = new Date(unix_timestamp * 1000); // to ms
+    var hours = date.getHours();
+    var minutes = "0" + date.getMinutes();
+    var seconds = "0" + date.getSeconds();
+    var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+    return formattedTime;
+}
+
 async function getMinerStats() {
     let login, user = {};
     login = document.getElementById("login");
@@ -42,6 +52,13 @@ async function getMinerStats() {
             para3.appendChild(pmegaHashReported)
             let elementReportedHashrate = document.getElementsByClassName("reportedHashrate")[0];
             elementReportedHashrate.appendChild(para3);
+
+            let para4 = document.createElement("p");
+            let time = res.data[0].time;
+            const convertedTime = document.createTextNode(convertUnixTimestamp(time));
+            para4.appendChild(convertedTime)
+            let elementTime = document.getElementsByClassName("time")[0];
+            elementTime.appendChild(para4);
         })
         console.log(result);
     }

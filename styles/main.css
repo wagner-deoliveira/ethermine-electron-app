@@ -40,13 +40,13 @@ body, input, button, textarea {
     color: var(--color-text-base);
 }
 
-#hello {
+#ethermine {
     font-size: 4rem;
     font-weight: 200;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    color: lightgray;
+    justify-content: center !important;
+    color: var(--color-title-in-primary);
 }
 
 .desc {
@@ -76,6 +76,29 @@ body, input, button, textarea {
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-evenly;
+}
+
+.boxed label {
+    margin: 1rem;
+    color: lightseagreen;
+    grid-auto-rows: auto;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+
+.boxed input {
+    margin: 1rem;
+    color: gray;
+    grid-auto-rows: auto;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+
+#submit {
+    color: darkblue;
+    width: 20%;
 }
 
 .wallet {

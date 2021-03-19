@@ -38,3 +38,7 @@ async function getMinerStats() {
 }
 
 getMinerStats();
+
+//TODO : appendchild only once if child already exist in DOM
+//TODO : Loop through the data keys to get values
+//TODO : Automatic update using a defined period of time

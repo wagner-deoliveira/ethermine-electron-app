@@ -21,15 +21,15 @@ async function getMinerStats() {
             throw new Error(message);
         }
 
-        const worker = response.json().then(data => {
+        const result = response.json().then(res => {
             let para = document.createElement("p");
-            let node = document.createTextNode(data);
+            let node = document.createTextNode(JSON.stringify(res.data));
             para.appendChild(node)
 
             let element = document.getElementsByClassName("boxed")[0];
             element.appendChild(para);
         })
-        await console.log(worker);
+        console.log(result);
     }
 }
 

@@ -31,36 +31,40 @@ async function getMinerStats() {
         }
 
         const result = response.json().then(res => {
-            let para1 = document.createElement("p");
-            let worker = document.createTextNode(res.data[0].worker);
-            para1.appendChild(worker)
-            let elementWorker = document.getElementsByClassName("miner")[0];
-            elementWorker.appendChild(para1);
+            if (res.data.isEmpty){
+                const message = "Data is empty. Check miner current activity!";
+                throw new Error(message);
+            } else {
+                let para1 = document.createElement("p");
+                let worker = document.createTextNode(res.data[0].worker);
+                para1.appendChild(worker)
+                let elementWorker = document.getElementsByClassName("miner")[0];
+                elementWorker.appendChild(para1);
 
-            let para2 = document.createElement("p");
-            let hashRate = res.data[0].averageHashrate;
-            const megaHash = (hashRate / 1000000).toFixed(2);
-            const pMegaHash = document.createTextNode(megaHash);
-            para2.appendChild(pMegaHash)
-            let elementHashrate = document.getElementsByClassName("hashrate")[0];
-            elementHashrate.appendChild(para2);
+                let para2 = document.createElement("p");
+                let hashRate = res.data[0].averageHashrate;
+                const megaHash = (hashRate / 1000000).toFixed(2);
+                const pMegaHash = document.createTextNode(megaHash);
+                para2.appendChild(pMegaHash)
+                let elementHashrate = document.getElementsByClassName("hashrate")[0];
+                elementHashrate.appendChild(para2);
 
-            let para3 = document.createElement("p");
-            let reportedHashRate = res.data[0].reportedHashrate;
-            const megaHashReported = (reportedHashRate / 1000000).toFixed(2);
-            const pmegaHashReported = document.createTextNode(megaHashReported);
-            para3.appendChild(pmegaHashReported)
-            let elementReportedHashrate = document.getElementsByClassName("reportedHashrate")[0];
-            elementReportedHashrate.appendChild(para3);
+                let para3 = document.createElement("p");
+                let reportedHashRate = res.data[0].reportedHashrate;
+                const megaHashReported = (reportedHashRate / 1000000).toFixed(2);
+                const pmegaHashReported = document.createTextNode(megaHashReported);
+                para3.appendChild(pmegaHashReported)
+                let elementReportedHashrate = document.getElementsByClassName("reportedHashrate")[0];
+                elementReportedHashrate.appendChild(para3);
 
-            let para4 = document.createElement("p");
-            let time = res.data[0].time;
-            const convertedTime = document.createTextNode(convertUnixTimestamp(time));
-            para4.appendChild(convertedTime)
-            let elementTime = document.getElementsByClassName("time")[0];
-            elementTime.appendChild(para4);
-        })
-        console.log(result);
+                let para4 = document.createElement("p");
+                let time = res.data[0].time;
+                const convertedTime = document.createTextNode(convertUnixTimestamp(time));
+                para4.appendChild(convertedTime)
+                let elementTime = document.getElementsByClassName("time")[0];
+                elementTime.appendChild(para4);
+            }
+        });
     }
 }
 

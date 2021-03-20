@@ -36,7 +36,7 @@ async function getMinerStats() {
             let para2 = document.createElement("span");
             para2.id = "childHash";
             let hashRate = res.data[0].averageHashrate;
-            const megaHash = (hashRate / 1000000).toFixed(2);
+            const megaHash = (hashRate / 1000000).toFixed(3);
             const pMegaHash = document.createTextNode(megaHash);
             para2.appendChild(pMegaHash)
             let elementHashrate = document.getElementsByClassName("hashrate")[0];
@@ -48,7 +48,7 @@ async function getMinerStats() {
 
             let para3 = document.createElement("span");
             let reportedHashRate = res.data[0].reportedHashrate;
-            const megaHashReported = (reportedHashRate / 1000000).toFixed(2);
+            const megaHashReported = (reportedHashRate / 1000000).toFixed(3);
             const pmegaHashReported = document.createTextNode(megaHashReported);
             para3.appendChild(pmegaHashReported)
             let elementReportedHashrate = document.getElementsByClassName("reportedHashrate")[0];

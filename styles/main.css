@@ -127,20 +127,18 @@ section {
 
 .server {
     color: var(--color-primary-lighter);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    margin-left: 10rem;
 }
 
-.miner,
-.averageHashrate,
-.reportedHashrate,
-.time,
-.unpaidRevenue,
-.estimatedEarnings {
+#miner,
+#averageHashrate,
+#reportedHashrate,
+#time,
+#unpaidRevenue,
+#estimatedEarnings {
     color: var(--color-text-complement);
-    display: flex;
-    margin-left: 3rem;
+    margin-left: 1rem;
     align-items: center;
     justify-content: center;
 }

@@ -15,6 +15,8 @@ async function getMinerStats() {
         event.preventDefault();
         user.wallet = document.getElementById("wallet").value;
         const minerStats = `${user.wallet}/workers`;
+        const minerRevenue = `${user.wallet}/currentStats`;
+
         const response = await fetch(api + minerStats, myInit);
         if (!response.ok) {
             const message = `An error has occurred: ${response.status}`;
@@ -38,7 +40,6 @@ async function getMinerStats() {
 
         });
 
-        const minerRevenue = `${user.wallet}/currentStats`;
         const responseRevenue = await fetch(api + minerRevenue, myInit);
         const rev = responseRevenue.json().then(res => {
             if (res.data.isEmpty) {
@@ -55,16 +56,18 @@ async function getMinerStats() {
 }
 
 function reload(div){
-    const container = document.getElementById(div);
+    const container = document.getElementsByClassName(div);
     const content = container.innerHTML;
     container.innerHTML = content;
-
-    //this line is to watch the result in console , you can remove it later
-    console.log("Refreshed");
 }
 
-document.getElementById("submit").onclick = getMinerStats;
+async function handleClick () {
+    reload("server");
+    await getMinerStats();
+}
 
-//TODO : appendchild only once if child already exist in DOM
-//TODO : Loop through the data keys to get values
+
+document.getElementById("submit").onclick = handleClick;
+
+
 //TODO : Automatic update using a defined period of time

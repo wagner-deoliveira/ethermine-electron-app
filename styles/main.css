@@ -29,6 +29,7 @@
 
 html, body, #root {
     height: 100vh;
+    padding: 0;
 }
 
 body {
@@ -40,29 +41,47 @@ body, input, button, textarea {
     color: var(--color-text-base);
 }
 
+section {
+    margin: 1.5rem 0;
+}
+
 #ethermine {
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: 200;
     display: flex;
     align-items: center;
     justify-content: center !important;
     color: var(--color-title-in-primary);
+    margin-bottom: 1rem;
 }
 
-.desc {
-    font-size: 3rem;
-    color: rosybrown;
+.container {
+    padding: 0;
+    position: relative;
+    margin: 1rem;
+}
+
+.walletSvg {
     display: flex;
+    max-width: 10%;
+    fill: var(--color-box-base);
+
+}
+
+.description {
+    display: flex;
+    font-size: 3rem;
+    font-weight: 400;
     align-items: center;
     justify-content: space-around;
-    color: rosybrown;
+    color: var(--color-primary-lighter);
+    position: center;
 }
 
 #login {
     margin: 2rem;
     color: lightseagreen;
-    border: 1px solid lightseagreen ;
-    border-radius: 0.3rem;
+    border-top: 1px solid lightseagreen ;
     grid-template-columns: 4fr 4fr 4fr;
     display: flex;
     align-items: center;
@@ -113,10 +132,16 @@ body, input, button, textarea {
     justify-content: center;
 }
 
-.miner, .hashrate, .reportedHashrate, .time {
+.miner,
+.hashrate,
+.reportedHashrate,
+.time,
+.unpaidRevenue,
+.estimatedEarnings {
     color: var(--color-text-complement);
     display: flex;
     margin-left: 3rem;
     align-items: center;
     justify-content: center;
 }
+

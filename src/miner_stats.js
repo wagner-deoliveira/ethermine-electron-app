@@ -1,5 +1,5 @@
 import convertUnixTimestamp from "../utils/utils.js";
-const api = "https://api.ethermine.org/";
+const api = "https://api.ethermine.org/miner/";
 const myHeaders = new Headers();
 const myInit = {
     method: 'GET',
@@ -14,7 +14,7 @@ async function getMinerStats() {
     login.onsubmit = async function (event) {
         event.preventDefault();
         user.wallet = document.getElementById("wallet").value;
-        const minerStats = `miner/${user.wallet}/workers`;
+        const minerStats = `${user.wallet}/workers`;
         const response = await fetch(api + minerStats, myInit);
         if (!response.ok) {
             const message = `An error has occurred: ${response.status}`;
@@ -60,6 +60,28 @@ async function getMinerStats() {
             para4.appendChild(convertedTime)
             let elementTime = document.getElementsByClassName("time")[0];
             elementTime.appendChild(para4);
+        });
+
+        const minerRevenue = `${user.wallet}/currentStats`;
+        const responseRevenue = await fetch(api + minerRevenue, myInit);
+        const rev = responseRevenue.json().then(res => {
+            if (res.data.isEmpty) {
+                const message = "Data is empty. Check miner current activity!";
+                throw new Error(message);
+            }
+
+            let para1 = document.createElement("span");
+            let unpaid = res.data.unpaid;
+            const eth = document.createTextNode((Math.pow(10, -18) * unpaid).toFixed(6));
+            para1.appendChild(eth)
+            let elementWorker = document.getElementsByClassName("unpaidRevenue")[0];
+            elementWorker.appendChild(para1);
+
+            let para2 = document.createElement("span");
+            let coinsPerMin = document.createTextNode(res.data.coinsPerMin);
+            para2.appendChild(coinsPerMin)
+            let elementTime = document.getElementsByClassName("estimatedEarnings")[0];
+            elementTime.appendChild(para2);
         });
     }
 }

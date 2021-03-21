@@ -22,44 +22,20 @@ async function getMinerStats() {
         }
 
         const result = response.json().then(res => {
-            if (res.data.isEmpty) {
+            if (res.data[0].isEmpty) {
                 const message = "Data is empty. Check miner current activity!";
                 throw new Error(message);
             }
+            const {worker, time, lastSeen, reportedHashrate, currentHashrate, validShares, invalidShares, staleShares, averageHashrate } = res.data[0];
+            const averageMegaHash = (averageHashrate / 1000000).toFixed(3);
+            const megaHashReported = (reportedHashrate / 1000000).toFixed(3);
+            const convertedTime = convertUnixTimestamp(time);
 
-            let para1 = document.createElement("span");
-            let worker = document.createTextNode(res.data[0].worker);
-            para1.appendChild(worker)
-            let elementWorker = document.getElementsByClassName("miner")[0];
-            elementWorker.appendChild(para1);
+            document.getElementById("miner").textContent = worker;
+            document.getElementById("averageHashrate").textContent = averageMegaHash;
+            document.getElementById("reportedHashrate").textContent = megaHashReported;
+            document.getElementById("time").textContent = convertedTime;
 
-            let para2 = document.createElement("span");
-            para2.id = "childHash";
-            let hashRate = res.data[0].averageHashrate;
-            const megaHash = (hashRate / 1000000).toFixed(3);
-            const pMegaHash = document.createTextNode(megaHash);
-            para2.appendChild(pMegaHash)
-            let elementHashrate = document.getElementsByClassName("hashrate")[0];
-            elementHashrate.appendChild(para2);
-            //
-            // var sp2 = document.getElementById("childSpan");
-            // var parentDiv = document.getElementsByClassName("hashrate")[0];
-            // parentDiv.replaceChild(para2, sp2);
-
-            let para3 = document.createElement("span");
-            let reportedHashRate = res.data[0].reportedHashrate;
-            const megaHashReported = (reportedHashRate / 1000000).toFixed(3);
-            const pmegaHashReported = document.createTextNode(megaHashReported);
-            para3.appendChild(pmegaHashReported)
-            let elementReportedHashrate = document.getElementsByClassName("reportedHashrate")[0];
-            elementReportedHashrate.appendChild(para3);
-
-            let para4 = document.createElement("span");
-            let time = res.data[0].time;
-            const convertedTime = document.createTextNode(convertUnixTimestamp(time));
-            para4.appendChild(convertedTime)
-            let elementTime = document.getElementsByClassName("time")[0];
-            elementTime.appendChild(para4);
         });
 
         const minerRevenue = `${user.wallet}/currentStats`;
@@ -70,18 +46,10 @@ async function getMinerStats() {
                 throw new Error(message);
             }
 
-            let para1 = document.createElement("span");
-            let unpaid = res.data.unpaid;
-            const eth = document.createTextNode((Math.pow(10, -18) * unpaid).toFixed(6));
-            para1.appendChild(eth)
-            let elementWorker = document.getElementsByClassName("unpaidRevenue")[0];
-            elementWorker.appendChild(para1);
-
-            let para2 = document.createElement("span");
-            let coinsPerMin = document.createTextNode(res.data.coinsPerMin);
-            para2.appendChild(coinsPerMin)
-            let elementTime = document.getElementsByClassName("estimatedEarnings")[0];
-            elementTime.appendChild(para2);
+            const {unpaid, coinsPerMin} = res.data;
+            const eth = (Math.pow(10, -18) * unpaid).toFixed(6);
+            document.getElementById("unpaidRevenue").textContent = eth;
+            document.getElementById("estimatedEarnings").textContent = coinsPerMin;
         });
     }
 }

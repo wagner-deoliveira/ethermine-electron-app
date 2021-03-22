@@ -1,4 +1,5 @@
 import convertUnixTimestamp from "../utils/utils.js";
+
 const api = "https://api.ethermine.org/miner/";
 const myHeaders = new Headers();
 const myInit = {
@@ -77,20 +78,18 @@ function startTimer(duration, display) {
     }, 1000);
 }
 
-function rollingTimer() {
-    const tenMinutes = 60 * 10,
+async function rollingTimer(minutes) {
+    const xMinutes = 60 * minutes,
     display = document.querySelector('#countdown');
-    startTimer(tenMinutes, display);
+    startTimer(xMinutes, display);
+    await getMinerStats()
+    //document.getElementById("submit").click();
 }
 
-async function handleClick () {
-    reload("server");
-    rollingTimer();
-    await getMinerStats();
-}
+document.getElementById("submit").addEventListener('click', async () => {
+    reload("server")
+    await rollingTimer(10)
+})
 
 
-document.getElementById("submit").onclick = handleClick;
-
-
-//TODO : Automatic update using a defined period of time
+//TODO : Automatic update using a defined period of time (almost done)

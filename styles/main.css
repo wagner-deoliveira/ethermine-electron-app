@@ -147,3 +147,15 @@ section {
     margin: 0.3rem 0;
 }
 
+.container-count {
+    font-weight: 700;
+    color: var(--color-line-in-white);
+    margin-left: 10rem;
+    margin-top: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+#countdown {
+    color: mediumvioletred;
+}

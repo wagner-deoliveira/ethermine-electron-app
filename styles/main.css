@@ -41,6 +41,11 @@ body, input, button, textarea {
     color: var(--color-text-base);
 }
 
+.main {
+    margin-left: 26rem;
+}
+
+
 section {
     margin: 1.5rem 0;
 }
@@ -78,14 +83,15 @@ canvas {
 }
 
 #coin {
-    animation: coin 1s ease;
+    animation: coin 5s ease;
     transform-origin: center;
     transform-box: fill-box;
+    animation-iteration-count:infinite;
 }
 
 @keyframes coin {
     from {
-        transform: translateY(-50%)
+        transform: translateY(-100%)
     }
     to {
         transform: translateY(0%)

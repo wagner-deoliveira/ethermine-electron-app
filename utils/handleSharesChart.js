@@ -9,10 +9,10 @@ function sharesChart(dataX, dataY1, dataY2, dataY3) {
                 fill: false,
                 data: dataY1,
                 backgroundColor: [
-                    'rgba(54, 162, 235, 0.2)'
+                    'rgba(4, 191, 88, 0.6)'
                 ],
                 borderColor: [
-                    'rgba(54, 162, 235, 0.2)'
+                    'rgba(4, 191, 88, 0.6)'
                 ],
                 borderWidth: 1
             },
@@ -21,10 +21,10 @@ function sharesChart(dataX, dataY1, dataY2, dataY3) {
                     fill: false,
                     data: dataY2,
                     backgroundColor: [
-                        'rgba(255, 206, 86, 0.2)'
+                        'rgba(54, 162, 235, 0.6)'
                     ],
                     borderColor: [
-                        'rgba(255, 206, 86, 0.2))'
+                        'rgba(54, 162, 235, 0.6)'
                     ],
                     borderWidth: 1
                 },
@@ -33,10 +33,10 @@ function sharesChart(dataX, dataY1, dataY2, dataY3) {
                     fill: false,
                     data: dataY3,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)'
+                        'rgba(255, 99, 132, 0.6)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 0.2)'
+                        'rgba(255, 99, 132, 0.6)'
                     ],
                     borderWidth: 1
                 }]

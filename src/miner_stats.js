@@ -1,6 +1,6 @@
 import convertUnixTimestamp from "../utils/utils.js"
 import displayChart from "../utils/handleHashrateChart.js"
-import sharesChart from "../utils/handleSharesChart"
+import sharesChart from "../utils/handleSharesChart.js"
 
 const api = "https://api.ethermine.org/miner/"
 const myHeaders = new Headers()

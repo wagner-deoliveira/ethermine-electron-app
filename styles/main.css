@@ -124,15 +124,20 @@ section {
 .server {
     color: var(--color-primary-lighter);
     display: block;
-    margin-left: 10rem;
+    margin-left: 20rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 3px;
+    transition: 0.3s;
+    width: 60%;
+    padding: 0.5rem;
+    background-color: #050911;
 }
 
-#miner,
-#averageHashrate,
-#reportedHashrate,
-#time,
-#unpaidRevenue,
-#estimatedEarnings {
+.server:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.server span {
     color: var(--color-text-complement);
     margin-left: 1rem;
     align-items: center;
@@ -150,8 +155,8 @@ section {
 .container-count {
     font-weight: 700;
     color: var(--color-line-in-white);
-    margin-left: 10rem;
     margin-top: 2rem;
+    display: flex;
     align-items: center;
     justify-content: center;
 }

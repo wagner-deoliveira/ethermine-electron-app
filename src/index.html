@@ -31,6 +31,7 @@
                 Miner: <span id="miner"></span><br />
                 Average hash rate (MH/s): <span id="averageHashrate"></span><br />
                 Reported hash rate (MH/s): <span id="reportedHashrate"></span><br />
+                Current hash rate (MH/s): <span id="currentHashrate"></span><br />
                 Time: <span id="time"></span>
             </p>
         </div>
@@ -47,7 +48,7 @@
     <div class="container-count">
         <div>Refreshing in <span id="countdown">10:00</span> minutes!</div>
     </div>
-    <canvas id="statsChart" width="600" height="400"></canvas>
+    <canvas id="statsChart" width="600" height="150"></canvas>
 </body>
 <script type="module" src="../src/miner_stats.js"></script>
 </html>

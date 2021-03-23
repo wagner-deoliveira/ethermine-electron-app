@@ -1,5 +1,5 @@
 import convertUnixTimestamp from "../utils/utils.js"
-import displayChart from "../utils/handleChart.js"
+import displayChart from "../utils/handleHashrateChart.js"
 
 const api = "https://api.ethermine.org/miner/"
 const myHeaders = new Headers()
@@ -18,6 +18,7 @@ async function getMinerStats() {
         user.wallet = document.getElementById("wallet").value
         const minerStats = `${user.wallet}/workers`
         const minerRevenue = `${user.wallet}/currentStats`
+        const minerDashboard = `${user.wallet}/dashboard`
 
         const response = await fetch(api + minerStats, myInit)
         if (!response.ok) {
@@ -33,11 +34,13 @@ async function getMinerStats() {
             const {worker, time, lastSeen, reportedHashrate, currentHashrate, validShares, invalidShares, staleShares, averageHashrate } = res.data[0]
             const averageMegaHash = (averageHashrate / 1000000).toFixed(3)
             const megaHashReported = (reportedHashrate / 1000000).toFixed(3)
+            const megaHashCurrent = (currentHashrate / 1000000).toFixed(3)
             const convertedTime = convertUnixTimestamp(time)
 
             document.getElementById("miner").textContent = worker
             document.getElementById("averageHashrate").textContent = averageMegaHash
             document.getElementById("reportedHashrate").textContent = megaHashReported
+            document.getElementById("currentHashrate").textContent = megaHashCurrent
             document.getElementById("time").textContent = convertedTime
         })
 
@@ -52,6 +55,35 @@ async function getMinerStats() {
             const eth = (Math.pow(10, -18) * unpaid).toFixed(6)
             document.getElementById("unpaidRevenue").textContent = eth
             document.getElementById("estimatedEarnings").textContent = coinsPerMin
+        })
+
+        const responseDashboard = await fetch(api + minerDashboard, myInit)
+        const dashboard = responseDashboard.json().then(res => {
+            if (res.data.isEmpty) {
+                const message = "Data is empty. Check miner current activity!"
+                throw new Error(message)
+            }
+            const {statistics} = res.data
+            const timeArray = []
+            const currentHashrateArray = []
+            const reportedHashrateArray = []
+
+            let result = statistics.map(({ time,
+                                           reportedHashrate,
+                                           currentHashrate,
+                                           validShares,
+                                           invalidShares,
+                                           staleShares
+                                         }) => {
+                const convertedTime = convertUnixTimestamp(time)
+                const convertedCurrentHashrate = (currentHashrate / 1000000).toFixed(3)
+                const convertedReportedHashrate = (reportedHashrate / 1000000).toFixed(3)
+                timeArray.push(convertedTime)
+                currentHashrateArray.push(parseFloat(convertedCurrentHashrate))
+                reportedHashrateArray.push(parseFloat(convertedReportedHashrate))
+            }
+            )
+            displayChart(timeArray, currentHashrateArray, reportedHashrateArray)
         })
     }
 }
@@ -89,7 +121,6 @@ async function rollingTimer() {
 document.getElementById("submit").addEventListener('click', async () => {
     reload("server")
     await rollingTimer()
-    displayChart()
 })
 
 

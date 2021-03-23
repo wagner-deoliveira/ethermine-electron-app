@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script type="module" src="../src/miner_stats.js"></script>
+    <script type="module" src="../utils/handleSidebar.js"></script>
 </head>
     <body>
         <nav class="sidebar show">
@@ -52,19 +54,6 @@
                 <li><a href="#">Feedback</a></li>
             </ul>
         </nav>
-        <script>
-            $('.feat-btn').click(function(){
-                $('nav ul .feat-show').toggleClass("show");
-                $('nav ul .first').toggleClass("rotate");
-            });
-            $('.serv-btn').click(function(){
-                $('nav ul .serv-show').toggleClass("show1");
-                $('nav ul .second').toggleClass("rotate");
-            });
-            $('nav ul li').click(function(){
-                $(this).addClass("active").siblings().removeClass("active");
-            });
-        </script>
         <h1 id="ethermine">Ethermine API call</h1>
         <div id="container">
             <p class="description">

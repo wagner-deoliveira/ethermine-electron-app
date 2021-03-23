@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 </head>
 <body>
     <h1 id="ethermine">Ethermine API call</h1>
@@ -46,6 +47,7 @@
     <div class="container-count">
         <div>Refreshing in <span id="countdown">10:00</span> minutes!</div>
     </div>
+    <canvas id="statsChart" width="600" height="400"></canvas>
 </body>
 <script type="module" src="../src/miner_stats.js"></script>
 </html>

@@ -1,94 +1,95 @@
-import convertUnixTimestamp from "../utils/utils.js";
+import convertUnixTimestamp from "../utils/utils.js"
+import displayChart from "../utils/handleChart.js"
 
-const api = "https://api.ethermine.org/miner/";
-const myHeaders = new Headers();
+const api = "https://api.ethermine.org/miner/"
+const myHeaders = new Headers()
 const myInit = {
     method: 'GET',
     headers: myHeaders,
     mode: 'cors',
     cache: 'default'
-};
+}
 
 async function getMinerStats() {
-    let login, user = {};
-    login = document.getElementById("login");
+    let login, user = {}
+    login = document.getElementById("login")
     login.onsubmit = async function (event) {
-        event.preventDefault();
-        user.wallet = document.getElementById("wallet").value;
-        const minerStats = `${user.wallet}/workers`;
-        const minerRevenue = `${user.wallet}/currentStats`;
+        event.preventDefault()
+        user.wallet = document.getElementById("wallet").value
+        const minerStats = `${user.wallet}/workers`
+        const minerRevenue = `${user.wallet}/currentStats`
 
-        const response = await fetch(api + minerStats, myInit);
+        const response = await fetch(api + minerStats, myInit)
         if (!response.ok) {
-            const message = `An error has occurred: ${response.status}`;
-            throw new Error(message);
+            const message = `An error has occurred: ${response.status}`
+            throw new Error(message)
         }
 
         const result = response.json().then(res => {
             if (res.data[0].isEmpty) {
-                const message = "Data is empty. Check miner current activity!";
-                throw new Error(message);
+                const message = "Data is empty. Check miner current activity!"
+                throw new Error(message)
             }
-            const {worker, time, lastSeen, reportedHashrate, currentHashrate, validShares, invalidShares, staleShares, averageHashrate } = res.data[0];
-            const averageMegaHash = (averageHashrate / 1000000).toFixed(3);
-            const megaHashReported = (reportedHashrate / 1000000).toFixed(3);
-            const convertedTime = convertUnixTimestamp(time);
+            const {worker, time, lastSeen, reportedHashrate, currentHashrate, validShares, invalidShares, staleShares, averageHashrate } = res.data[0]
+            const averageMegaHash = (averageHashrate / 1000000).toFixed(3)
+            const megaHashReported = (reportedHashrate / 1000000).toFixed(3)
+            const convertedTime = convertUnixTimestamp(time)
 
-            document.getElementById("miner").textContent = worker;
-            document.getElementById("averageHashrate").textContent = averageMegaHash;
-            document.getElementById("reportedHashrate").textContent = megaHashReported;
-            document.getElementById("time").textContent = convertedTime;
-        });
+            document.getElementById("miner").textContent = worker
+            document.getElementById("averageHashrate").textContent = averageMegaHash
+            document.getElementById("reportedHashrate").textContent = megaHashReported
+            document.getElementById("time").textContent = convertedTime
+        })
 
-        const responseRevenue = await fetch(api + minerRevenue, myInit);
+        const responseRevenue = await fetch(api + minerRevenue, myInit)
         const rev = responseRevenue.json().then(res => {
             if (res.data.isEmpty) {
-                const message = "Data is empty. Check miner current activity!";
-                throw new Error(message);
+                const message = "Data is empty. Check miner current activity!"
+                throw new Error(message)
             }
 
-            const {unpaid, coinsPerMin} = res.data;
-            const eth = (Math.pow(10, -18) * unpaid).toFixed(6);
-            document.getElementById("unpaidRevenue").textContent = eth;
-            document.getElementById("estimatedEarnings").textContent = coinsPerMin;
-        });
+            const {unpaid, coinsPerMin} = res.data
+            const eth = (Math.pow(10, -18) * unpaid).toFixed(6)
+            document.getElementById("unpaidRevenue").textContent = eth
+            document.getElementById("estimatedEarnings").textContent = coinsPerMin
+        })
     }
 }
 
 function reload(div){
-    const container = document.getElementsByClassName(div);
-    const content = container.innerHTML;
-    container.innerHTML = content;
+    const container = document.getElementsByClassName(div)
+    const content = container.innerHTML
+    container.innerHTML = content
 }
 
 function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
+    var timer = duration, minutes, seconds
     setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10)
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+        minutes = minutes < 10 ? "0" + minutes : minutes
+        seconds = seconds < 10 ? "0" + seconds : seconds
 
-        display.textContent = minutes + ":" + seconds;
+        display.textContent = minutes + ":" + seconds
 
         if (--timer < 0) {
-            timer = duration;
+            timer = duration
         }
-    }, 1000);
+    }, 1000)
 }
 
-async function rollingTimer(minutes) {
-    const xMinutes = 60 * minutes,
-    display = document.querySelector('#countdown');
-    startTimer(xMinutes, display);
+async function rollingTimer() {
+    const xMinutes = 60 * 10,
+    display = document.querySelector('#countdown')
+    startTimer(xMinutes, display)
     await getMinerStats()
-    //document.getElementById("submit").click();
 }
 
 document.getElementById("submit").addEventListener('click', async () => {
     reload("server")
-    await rollingTimer(10)
+    await rollingTimer()
+    displayChart()
 })
 
 

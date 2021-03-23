@@ -1,4 +1,4 @@
-function displayChart(dataX, dataY1, dataY2, dataY3) {
+function sharesChart(dataX, dataY1, dataY2, dataY3) {
     const ctx = document.getElementById('sharesChart').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'line',
@@ -54,4 +54,4 @@ function displayChart(dataX, dataY1, dataY2, dataY3) {
     });
 }
 
-export default displayChart
+export default sharesChart

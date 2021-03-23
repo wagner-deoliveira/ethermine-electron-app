@@ -1,5 +1,5 @@
 function displayChart(dataX, dataY1, dataY2) {
-    const ctx = document.getElementById('statsChart').getContext('2d');
+    const ctx = document.getElementById('stats-chart').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'line',
         data: {

@@ -65,7 +65,7 @@ canvas {
     margin: 1rem;
 }
 
-.walletSvg {
+.wallet-svg {
     display: flex;
     max-width: 10%;
     fill: var(--color-box-base);

@@ -49,9 +49,9 @@ async function getMinerStats() {
             const convertedTime = convertUnixTimestamp(time)
 
             document.getElementById("miner").textContent = worker
-            document.getElementById("averageHashrate").textContent = averageMegaHash
-            document.getElementById("reportedHashrate").textContent = megaHashReported
-            document.getElementById("currentHashrate").textContent = megaHashCurrent
+            document.getElementById("average-hashrate").textContent = averageMegaHash
+            document.getElementById("reported-hashrate").textContent = megaHashReported
+            document.getElementById("current-hashrate").textContent = megaHashCurrent
             document.getElementById("time").textContent = convertedTime
         })
 
@@ -64,8 +64,8 @@ async function getMinerStats() {
 
             const {unpaid, coinsPerMin} = res.data
             const eth = (Math.pow(10, -18) * unpaid).toFixed(6)
-            document.getElementById("unpaidRevenue").textContent = eth
-            document.getElementById("estimatedEarnings").textContent = coinsPerMin
+            document.getElementById("unpaid-revenue").textContent = eth
+            document.getElementById("estimated-earnings").textContent = coinsPerMin
         })
 
         const responseDashboard = await fetch(api + minerDashboard, myInit)

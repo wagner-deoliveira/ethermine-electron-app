@@ -1,5 +1,5 @@
 function sharesChart(dataX, dataY1, dataY2, dataY3) {
-    const ctx = document.getElementById('sharesChart').getContext('2d');
+    const ctx = document.getElementById('shares-chart').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'line',
         data: {

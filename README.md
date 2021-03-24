@@ -6,7 +6,7 @@ First implementation looks like this:
 ![Screenshot](pics/ethermineAppScreenshot.png)
 
 Current form:
-![Update 2](pics/ethermineAppScreenshot_update2.png)
+![Update 2](pics/ethermineAppScreenshot_update3.png)
 
 TODO:
 - Add pool stats

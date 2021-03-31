@@ -30,8 +30,8 @@ async function getPriceStats() {
                 const message = "Data is empty. Check miner current activity!"
                 throw new Error(message)
             }
+
             const {usd, btc} = res.data.price
-            console.log(usd, btc)
             document.getElementById("usd-price").textContent = usd
             document.getElementById("btc-price").textContent = btc
         })
@@ -42,6 +42,3 @@ async function getPriceStats() {
 document.getElementById("submit").addEventListener('click', async () => {
     await getPriceStats()
 })
-
-
-//TODO : Automatic update using a defined period of time (almost done)

@@ -31,8 +31,9 @@ async function getPriceStats() {
                 throw new Error(message)
             }
             const {usd, btc} = res.data.price
-            // const {usd, btc} = price
             console.log(usd, btc)
+            document.getElementById("usd-price").textContent = usd
+            document.getElementById("btc-price").textContent = btc
         })
     }
 }

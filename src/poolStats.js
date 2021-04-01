@@ -13,9 +13,9 @@ async function getPriceStats() {
     login.onsubmit = async function (event) {
         event.preventDefault()
         user.wallet = document.getElementById("wallet").value
-        const poolStats = api+'poolStats'
+        const poolStatsUrl = api+'poolStats'
 
-        const response = await fetch(poolStats, myInit)
+        const response = await fetch(poolStatsUrl, myInit)
         if (!response.ok) {
             const message = `An error has occurred: ${response.status}`
             throw new Error(message)
@@ -28,8 +28,14 @@ async function getPriceStats() {
             }
 
             const {usd, btc} = res.data.price
+            const {hashRate, miners, workers, blocksPerHour} = res.data.poolStats
+
             document.getElementById("usd-price").textContent = usd
             document.getElementById("btc-price").textContent = btc
+            document.getElementById("hash-rate").textContent = (hashRate*Math.pow(10,-12)).toFixed(3)
+            document.getElementById("miners").textContent = miners
+            document.getElementById("workers").textContent = workers
+            document.getElementById("blocksPerHour").textContent = blocksPerHour
         })
     }
 }

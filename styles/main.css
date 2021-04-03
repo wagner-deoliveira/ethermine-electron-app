@@ -341,3 +341,14 @@ nav ul li a span.rotate {
 #app-nodata {
     max-width: 50%;
 }
+
+table {
+    border: 1px solid;
+}
+tr {
+    display: flex;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    justify-content: space-between;
+    max-width: 90vh;
+}

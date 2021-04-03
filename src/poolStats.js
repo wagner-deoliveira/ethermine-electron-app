@@ -1,6 +1,5 @@
 import convertUnixTimestamp from "../utils/utils.js";
-import displayChart from "../utils/handleHashrateChart";
-import sharesChart from "../utils/handleSharesChart";
+import minersBarChart from "../utils/handleMinersChart.js";
 
 const api = "https://api.ethermine.org/"
 const myHeaders = new Headers()
@@ -40,11 +39,7 @@ export async function getPriceStats() {
         document.getElementById("workers").textContent = workers
         document.getElementById("blocksPerHour").textContent = blocksPerHour
 
-        let result = minedBlocks.map(({
-                                         number,
-                                         miner,
-                                         time
-                                     }) => {
+        let result = minedBlocks.map(({number, miner, time}) => {
                 const convertedTime = convertUnixTimestamp(time)
 
                 timeArray.push(convertedTime)

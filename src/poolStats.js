@@ -46,8 +46,6 @@ export async function getPriceStats() {
                 minersArray.push(miner)
             }
         )
-        console.log(minersArray)
-        //minersBarChart(timeArray, minersArray)
         updateTableHTML(timeArray, minersArray, numberArray)
     })
 }
@@ -55,16 +53,13 @@ export async function getPriceStats() {
 function updateTableHTML(myArray1, myArray2, myArray3) {
     var tableBody = document.getElementById("miners-pool-chart");
 
-    // Reset the table
     tableBody.innerHTML = "";
 
     let newRow1 = document.createElement("tr")
     let newRow2 = document.createElement("tr")
     let newRow3 = document.createElement("tr")
 
-    // Build the new table
     myArray1.forEach(function(row) {
-
         let newCell1 = document.createElement("td");
         tableBody.appendChild(newRow1);
 

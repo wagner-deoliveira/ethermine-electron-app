@@ -1,3 +1,7 @@
+import convertUnixTimestamp from "../utils/utils.js";
+import displayChart from "../utils/handleHashrateChart";
+import sharesChart from "../utils/handleSharesChart";
+
 const api = "https://api.ethermine.org/"
 const myHeaders = new Headers()
 const myInit = {
@@ -24,6 +28,10 @@ export async function getPriceStats() {
 
         const {usd, btc} = res.data.price
         const {hashRate, miners, workers, blocksPerHour} = res.data.poolStats
+        const {minedBlocks} = res.data.minedBlocks
+        const timeArray = []
+        const minersArray = []
+        const numberArray = []
 
         document.getElementById("usd-price").textContent = usd
         document.getElementById("btc-price").textContent = btc
@@ -31,5 +39,19 @@ export async function getPriceStats() {
         document.getElementById("miners").textContent = miners
         document.getElementById("workers").textContent = workers
         document.getElementById("blocksPerHour").textContent = blocksPerHour
+
+        let result = minedBlocks.map(({
+                                         number,
+                                         miner,
+                                         time
+                                     }) => {
+                const convertedTime = convertUnixTimestamp(time)
+
+                timeArray.push(convertedTime)
+                numberArray.push(parseFloat(number))
+                minersArray.push(parseFloat(miner))
+            }
+        )
+        minersBarChart(numberArray, timeArray, minersArray)
     })
 }

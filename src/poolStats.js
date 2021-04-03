@@ -1,5 +1,4 @@
 import convertUnixTimestamp from "../utils/utils.js";
-import minersBarChart from "../utils/handleMinersChart.js";
 
 const api = "https://api.ethermine.org/"
 const myHeaders = new Headers()
@@ -27,7 +26,7 @@ export async function getPriceStats() {
 
         const {usd, btc} = res.data.price
         const {hashRate, miners, workers, blocksPerHour} = res.data.poolStats
-        const {minedBlocks} = res.data.minedBlocks
+        const {minedBlocks} = res.data
         const timeArray = []
         const minersArray = []
         const numberArray = []
@@ -44,9 +43,72 @@ export async function getPriceStats() {
 
                 timeArray.push(convertedTime)
                 numberArray.push(parseFloat(number))
-                minersArray.push(parseFloat(miner))
+                minersArray.push(miner)
             }
         )
-        minersBarChart(numberArray, timeArray, minersArray)
+        console.log(minersArray)
+        //minersBarChart(timeArray, minersArray)
+        updateTableHTML(timeArray, minersArray, numberArray)
+    })
+}
+
+function updateTableHTML(myArray1, myArray2, myArray3) {
+    var tableBody = document.getElementById("miners-pool-chart");
+
+    // Reset the table
+    tableBody.innerHTML = "";
+
+    let newRow1 = document.createElement("tr")
+    let newRow2 = document.createElement("tr")
+    let newRow3 = document.createElement("tr")
+
+    // Build the new table
+    myArray1.forEach(function(row) {
+
+        let newCell1 = document.createElement("td");
+        tableBody.appendChild(newRow1);
+
+        if (row instanceof Array) {
+            row.forEach(function(cell) {
+                var newCell1 = document.createElement("td");
+                newCell1.textContent = cell
+                newRow1.appendChild(newCell1)
+            })
+        } else {
+            newCell1.textContent = row;
+            newRow1.appendChild(newCell1);
+        }
+    })
+
+    myArray2.forEach(function(row) {
+        let newCell2 = document.createElement("td");
+        tableBody.appendChild(newRow2);
+
+        if (row instanceof Array) {
+            row.forEach(function(cell) {
+                var newCell2 = document.createElement("td");
+                newCell2.textContent = cell
+                newRow2.appendChild(newCell2)
+            })
+        } else {
+            newCell2.textContent = row;
+            newRow2.appendChild(newCell2);
+        }
+    })
+
+    myArray3.forEach(function(row) {
+        let newCell3 = document.createElement("td");
+        tableBody.appendChild(newRow3);
+
+        if (row instanceof Array) {
+            row.forEach(function(cell) {
+                var newCell3 = document.createElement("td");
+                newCell3.textContent = cell
+                newRow3.appendChild(newCell3)
+            })
+        } else {
+            newCell3.textContent = row;
+            newRow3.appendChild(newCell3);
+        }
     })
 }

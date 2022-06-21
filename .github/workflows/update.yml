@@ -38,4 +38,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           UPDATE_COMMAND: npm
         with:
-          args: upgrade --latest
+          args: update -g

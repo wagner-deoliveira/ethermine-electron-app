@@ -36,6 +36,6 @@ jobs:
           AUTHOR_NAME: Wagner
           EXECUTE: "true"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          UPDATE_COMMAND: yarn
+          UPDATE_COMMAND: npm
         with:
           args: upgrade --latest
